@@ -8,9 +8,10 @@
 
 require "poke-api-v2"
 require "json"
-number_of_pokedex = PokeApi.get(:pokedex).count
+Pokedex.destroy_all
+number_of_pokedex = PokeApi.get(:pokedex).results
 
-number_of_pokedex.times do |pokedex_number|
-  pokedex_name = PokeApi.get(pokedex: pokedex_number).name
-  Pokedex.create(pokemon_name: pokedex_name)
+number_of_pokedex.count.times do |pokedex_number|
+  pokedex_name = number_of_pokedex[pokedex_number].name
+  Pokedex.create(pokedex_name: pokedex_name)
 end
