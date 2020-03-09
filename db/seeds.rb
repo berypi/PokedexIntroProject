@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require "poke-api-v2"
+require "json"
+number_of_pokedex = PokeApi.get(:pokedex).count
+
+number_of_pokedex.times do |pokedex_number|
+  pokedex_name = PokeApi.get(pokedex: pokedex_number).name
+  Pokedex.create(pokemon_name: pokedex_name)
+end
