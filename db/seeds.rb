@@ -13,13 +13,26 @@ Pokemon.destroy_all
 number_of_pokedex = PokeApi.get(:pokedex).results
 
 number_of_pokedex.count.times do |pokedex_number|
-  pokedex_name = number_of_pokedex[pokedex_number].name
+  pokedex_name = number_of_pokedex[pokedex_number].name.capitalize
   Pokedex.create(pokedex_name: pokedex_name)
 end
 
 number_of_pokemon = PokeApi.get(pokemon_species: { limit: 999 }).results
 number_of_pokemon.count.times do |pokemon|
   pokemon_name = number_of_pokemon[pokemon].name
-  pokemon_flavor_text = PokeApi.get(pokemon_species: pokemon_name).flavor_text_entries[1].flavor_text
-  Pokemon.create(pokemon_name: pokemon_name, description: pokemon_flavor_text[1])
+  pokemon_flavor_text = PokeApi.get(pokemon_species: pokemon_name)
+                               .flavor_text_entries
+  pokemon_flavor_text.count.times do |flavor_text|
+    next unless pokemon_flavor_text[flavor_text].language.name == "en"
+
+    en_text = pokemon_flavor_text[flavor_text].flavor_text.strip
+    Pokemon.create(pokemon_name: pokemon_name.capitalize, description: en_text)
+    break
+  end
+end
+
+number_of_types = PokeApi.get(:type).results
+number_of_types.count.times do |type|
+  pokemon_type = number_of_types[type].name.capitalize
+  Type.create(poke_type: pokemon_type)
 end
