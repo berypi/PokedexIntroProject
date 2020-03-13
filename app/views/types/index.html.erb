@@ -15,13 +15,9 @@
       <tr>
         <td><%= type.poke_type %></td>
         <td><%= link_to 'Show', type %></td>
-        <td><%= link_to 'Edit', edit_type_path(type) %></td>
-        <td><%= link_to 'Destroy', type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Type', new_type_path %>
