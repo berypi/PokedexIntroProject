@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Evolutions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Evolution name</th>
+      <th>Evolved from</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @evolutions.each do |evolution| %>
+      <tr>
+        <td><%= evolution.evolution_name %></td>
+        <td><%= evolution.evolved_from %></td>
+        <td><%= link_to 'Show', evolution %></td>
+        <td><%= link_to 'Edit', edit_evolution_path(evolution) %></td>
+        <td><%= link_to 'Destroy', evolution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Evolution', new_evolution_path %>

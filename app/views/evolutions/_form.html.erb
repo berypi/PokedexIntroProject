@@ -1,0 +1,27 @@
+<%= form_with(model: evolution, local: true) do |form| %>
+  <% if evolution.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(evolution.errors.count, "error") %> prohibited this evolution from being saved:</h2>
+
+      <ul>
+        <% evolution.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :evolution_name %>
+    <%= form.text_field :evolution_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :evolved_from %>
+    <%= form.text_field :evolved_from %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

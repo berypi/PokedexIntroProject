@@ -29,6 +29,10 @@ number_of_pokemon.count.times do |pokemon|
     Pokemon.create(pokemon_name: pokemon_name.capitalize, description: en_text)
     break
   end
+  evolution = PokeApi.get(pokemon_species: pokemon_name).evolves_from_species
+  if evolution
+    Evolution.create(evolution_name: pokemon_name, evolved_from: evolution.name)
+  end
 end
 
 number_of_types = PokeApi.get(:type).results
