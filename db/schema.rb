@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_10_202231) do
-
+ActiveRecord::Schema.define(version: 20_200_313_150_614) do
   create_table "evolutions", force: :cascade do |t|
     t.string "evolution_name"
     t.string "evolved_from"
@@ -23,6 +22,11 @@ ActiveRecord::Schema.define(version: 2020_03_10_202231) do
     t.string "pokedex_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pokedexes_pokemons", id: false, force: :cascade do |t|
+    t.integer "pokemon_id", null: false
+    t.integer "pokedex_id", null: false
   end
 
   create_table "pokemons", force: :cascade do |t|
@@ -44,5 +48,4 @@ ActiveRecord::Schema.define(version: 2020_03_10_202231) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-
 end

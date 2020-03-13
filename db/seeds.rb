@@ -10,6 +10,9 @@ require "poke-api-v2"
 require "json"
 Pokedex.destroy_all
 Pokemon.destroy_all
+Type.destroy_all
+Evolution.destroy_all
+Trainer.destroy_all
 number_of_pokedex = PokeApi.get(:pokedex).results
 
 number_of_pokedex.count.times do |pokedex_number|
