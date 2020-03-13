@@ -15,13 +15,6 @@ Type.destroy_all
 Evolution.destroy_all
 Trainer.destroy_all
 
-number_of_pokedex = PokeApi.get(:pokedex).results
-
-number_of_pokedex.count.times do |pokedex_number|
-  pokedex_name = number_of_pokedex[pokedex_number].name.capitalize
-  Pokedex.create(pokedex_name: pokedex_name)
-end
-
 number_of_pokemon = PokeApi.get(pokemon_species: { limit: 999 }).results
 number_of_pokemon.count.times do |pokemon|
   pokemon_name = number_of_pokemon[pokemon].name
@@ -31,7 +24,7 @@ number_of_pokemon.count.times do |pokemon|
     next unless pokemon_flavor_text[flavor_text].language.name == "en"
 
     en_text = pokemon_flavor_text[flavor_text].flavor_text.strip
-    Pokemon.create(pokemon_name: pokemon_name.capitalize, description: en_text)
+    Pokemon.create(pokemon_name: pokemon_name, description: en_text)
     break
   end
   evolution = PokeApi.get(pokemon_species: pokemon_name).evolves_from_species
@@ -44,4 +37,16 @@ number_of_types = PokeApi.get(:type).results
 number_of_types.count.times do |type|
   pokemon_type = number_of_types[type].name.capitalize
   Type.create(poke_type: pokemon_type)
+end
+
+number_of_pokedex = PokeApi.get(:pokedex).results
+number_of_pokedex.count.times do |pokedex_number|
+  pokedex_name = number_of_pokedex[pokedex_number].name
+  pokedex = Pokedex.create(pokedex_name: pokedex_name)
+  pokedex_entries = PokeApi.get(pokedex: pokedex_name).pokemon_entries
+  pokedex_entries.count.times do |pokemon|
+    pokemon_entry = pokedex_entries[pokemon].pokemon_species.name
+    pokemon_found = Pokemon.where(pokemon_name: pokemon_entry)
+    pokedex.pokemon << pokemon_found
+  end
 end

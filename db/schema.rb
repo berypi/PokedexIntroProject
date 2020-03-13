@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_313_150_614) do
+ActiveRecord::Schema.define(version: 20_200_313_180_738) do
   create_table "evolutions", force: :cascade do |t|
     t.string "evolution_name"
     t.string "evolved_from"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(version: 20_200_313_150_614) do
   create_table "pokemons", force: :cascade do |t|
     t.string "pokemon_name"
     t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pokemons_types", id: false, force: :cascade do |t|
+    t.integer "type_id", null: false
+    t.integer "pokemon_id", null: false
+  end
+
+  create_table "trainer_pokemons", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
