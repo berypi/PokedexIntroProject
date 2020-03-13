@@ -15,6 +15,14 @@ Type.destroy_all
 Evolution.destroy_all
 Trainer.destroy_all
 
+NUMBER_OF_TRAINERS = 5
+NUMBER_OF_TRAINER_POKEMONS = 3
+NUMBER_OF_TRAINERS.times do
+  trainer_name = Faker::FunnyName.name
+  trainer_descript = Faker::Lorem.sentence(word_count: 10, supplemental: true)
+  trainer = Trainer.create(name: trainer_name, description: trainer_descript)
+end
+
 number_of_pokemon = PokeApi.get(pokemon_species: { limit: 999 }).results
 number_of_pokemon.count.times do |pokemon|
   pokemon_name = number_of_pokemon[pokemon].name
@@ -49,11 +57,4 @@ number_of_pokedex.count.times do |pokedex_number|
     pokemon_found = Pokemon.where(pokemon_name: pokemon_entry)
     pokedex.pokemon << pokemon_found
   end
-end
-
-NUMBER_OF_TRAINERS = 5
-NUMBER_OF_TRAINERS.times do
-  trainer_name = Faker::FunnyName.name
-  trainer_descript = Faker::Lorem.words(4)
-  Trainer.create(name: trainer_name, description: trainer_descript)
 end
