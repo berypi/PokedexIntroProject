@@ -42,8 +42,12 @@ ActiveRecord::Schema.define(version: 20_200_313_180_738) do
   end
 
   create_table "trainer_pokemons", force: :cascade do |t|
+    t.integer "pokemon_id"
+    t.integer "trainer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["pokemon_id"], name: "index_trainer_pokemons_on_pokemon_id"
+    t.index ["trainer_id"], name: "index_trainer_pokemons_on_trainer_id"
   end
 
   create_table "trainers", force: :cascade do |t|
@@ -58,4 +62,7 @@ ActiveRecord::Schema.define(version: 20_200_313_180_738) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
+
+  add_foreign_key "trainer_pokemons", "pokemons"
+  add_foreign_key "trainer_pokemons", "trainers"
 end

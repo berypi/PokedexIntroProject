@@ -50,3 +50,10 @@ number_of_pokedex.count.times do |pokedex_number|
     pokedex.pokemon << pokemon_found
   end
 end
+
+NUMBER_OF_TRAINERS = 5
+NUMBER_OF_TRAINERS.times do
+  trainer_name = Faker::FunnyName.name
+  trainer_descript = Faker::Lorem.words(4)
+  Trainer.create(name: trainer_name, description: trainer_descript)
+end
