@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.7'
 # gem for pokemon api wrapper
 gem 'poke-api-v2'
 
+
+gem 'faker'
+
 # gem for parsing the JSON from pokemon api
 gem'json'
 
