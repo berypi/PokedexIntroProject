@@ -5,11 +5,27 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <%# <section class="section">
+      <div class="container">
+        <header>
+          <h1 class="title is-1"><%= link_to 'Horses on Rails', root_path %>
+          <%# <h2 class="subtitle is-4">Look at all the pretty horses standing in a <strong>row, row, row</strong>.</h2> %>
+        <%# </header> %>
+        <%# <%= render partial: 'horses/search_form' %>
+      <%# </div> %>
+    <%# </section> %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button><%= link_to 'Main', root_path %></button>|
+      <button><%= link_to 'About', ''%></button>|
+      <button><%= link_to 'Pokemons', '/pokemons/'%></button>|
+      <button><%= link_to 'Trainers', '/trainers/'%></button>
+    </nav>
     <%= yield %>
   </body>
 </html>
