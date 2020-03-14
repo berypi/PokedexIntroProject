@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>PokedexIntroProject</title>
     <%= csrf_meta_tags %>
@@ -21,10 +21,12 @@
       <%# </div> %>
     <%# </section> %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <button><%= link_to 'Main', root_path %></button>|
-      <button><%= link_to 'About', ''%></button>|
-      <button><%= link_to 'Pokemons', '/pokemons/'%></button>|
-      <button><%= link_to 'Trainers', '/trainers/'%></button>
+      <p>
+      <%= link_to 'Main', root_path %>|
+      <%= link_to 'About', ''%>|
+      <%= link_to 'Pokemons', '/pokemons/'%>|
+      <%= link_to 'Trainers', '/trainers/'%>
+      </p>
     </nav>
     <%= yield %>
   </body>

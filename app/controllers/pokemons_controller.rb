@@ -12,4 +12,9 @@ class PokemonsController < ApplicationController
   def show
     @pokemon = Pokemon.find(params[:id])
   end
+
+  # GET /search/?search_term=user+search+terms
+  def search
+    @pokemons = Pokemon.where("name LIKE ?", "%#{params[:search_term]}%")
+  end
 end

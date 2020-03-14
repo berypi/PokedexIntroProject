@@ -4,5 +4,10 @@
   <strong>Pokedex name:</strong>
   <%= @pokedex.pokedex_name %>
 </p>
+<p>
+<%= render partial: 'pokemons/pokemon',
+          collections: @pokedexes_pokemons,
+          locals: {show_link: true}%>
+</p>
 
 <%= link_to 'Back', pokedexes_path %>
